@@ -8,7 +8,7 @@ from pathlib import Path
 # paths
 ROOT_DIR = Path(os.path.realpath(os.path.join(os.path.dirname(__file__), "..")))
 RAW_FILE_PATH = ROOT_DIR / "data" / "raw"
-PREPROC_FILE_PATH = ROOT_DIR / "data"
+INT_FILE_PATH = ROOT_DIR / "data" / "int"
 TRAIN_FILE_PATH = ROOT_DIR / "data" / "final"
 MODEL_OUTPUT_PATH = ROOT_DIR / "models"
 NOTEBOOKS_PATH = ROOT_DIR / "notebooks"
