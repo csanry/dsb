@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT_DIR = Path(os.path.realpath(os.path.join(os.path.dirname(__file__), "..")))
 RAW_FILE_PATH = ROOT_DIR / "data" / "raw"
 INT_FILE_PATH = ROOT_DIR / "data" / "int"
-TRAIN_FILE_PATH = ROOT_DIR / "data" / "final"
+TRAIN_FILE_PATH = ROOT_DIR / "data" / "fin"
 MODEL_OUTPUT_PATH = ROOT_DIR / "models"
 NOTEBOOKS_PATH = ROOT_DIR / "notebooks"
 REPORTS_PATH = ROOT_DIR / "reports" / "figures"
