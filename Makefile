@@ -5,6 +5,7 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PYTHON_INTERPRETER = python3
 
+
 ifeq (,$(shell which conda))
 HAS_CONDA=False
 else
@@ -18,8 +19,23 @@ endif
 ## Setup packages
 pkg: 
 	pip install -e .
+	pre-commit install
 
+## Run pipe 
 pipe:
 	python3 $(PROJECT_DIR)/src/make_dataset.py
 	python3 $(PROJECT_DIR)/src/make_transactions_data.py
 	python3 $(PROJECT_DIR)/src/preprocessing.py
+
+# Push updates to docker container
+docker_push: 
+	docker build -t csanry/dsb:latest .
+	docker login 
+	docker push csanry/dsb:latest
+
+## Clean environment 
+clean:
+	pre-commit run --all-files
+	find . -type f -name "*.py[co]" -delete
+	find . -type d -name "__pycache__" -delete
+	find . -type d -name ".ipynb_checkpoints" -delete
