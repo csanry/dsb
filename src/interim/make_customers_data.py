@@ -2,8 +2,8 @@ import logging
 import os
 
 import pandas as pd
-
-from src import config, make_transactions_data
+from src import config
+from src.interim import make_transactions_data
 
 
 def make_customers_data():

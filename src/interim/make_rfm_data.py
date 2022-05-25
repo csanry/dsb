@@ -2,7 +2,6 @@ import datetime as dt
 import logging
 
 import pandas as pd
-
 from src import config
 
 
