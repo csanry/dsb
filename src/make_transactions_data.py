@@ -70,7 +70,7 @@ def make_transactions_data():
         inplace=True,
     )
 
-    df.to_parquet(config.INT_FILE_PATH / "transactions.parquet")
+    df.to_parquet(config.INT_FILE_PATH / "transactions_raw.parquet")
     logger.info("Done")
 
 

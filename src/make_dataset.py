@@ -3,15 +3,16 @@ import os
 import zipfile
 
 from src import config
-
-os.environ["KAGGLE_USERNAME"] = "clarencesry"
-os.environ["KAGGLE_KEY"] = "006967cfc619633984f9a17e5d8538f0"
+from src.helpers import setup_credentials
 
 
 def make_dataset():
+
+    setup_credentials()
+    from kaggle.api.kaggle_api_extended import KaggleApi
+
     log_fmt = "%(asctime)s:%(name)s:%(levelname)s - %(message)s"
     logging.basicConfig(level=logging.INFO, format=log_fmt)
-    from kaggle.api.kaggle_api_extended import KaggleApi
 
     logger = logging.getLogger()
 

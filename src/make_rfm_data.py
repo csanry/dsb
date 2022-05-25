@@ -1,29 +1,21 @@
 import datetime as dt
 import logging
-import os
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import missingno as msno
-import numpy as np
 import pandas as pd
-import seaborn as sns
 
 from src import config
 
 
 def make_rfm_data():
 
-    log_fmt = '%(asctime)s:%(name)s:%(levelname)s - %(message)s'
+    log_fmt = "%(asctime)s:%(name)s:%(levelname)s - %(message)s"
     logging.basicConfig(level=logging.INFO, format=log_fmt)
     logger = logging.getLogger()
-
 
     logger.info("Reading in files")
     customers = pd.read_csv(config.RAW_FILE_PATH / "olist_customers_dataset.csv")
     orders = pd.read_csv(config.RAW_FILE_PATH / "olist_orders_dataset.csv")
     order_items = pd.read_csv(config.RAW_FILE_PATH / "olist_order_items_dataset.csv")
-
 
     logger.info("Processing")
     grouped_order_items = (
@@ -79,6 +71,7 @@ def make_rfm_data():
     logger.info("Extracting file")
     rfm.to_parquet(config.INT_FILE_PATH / "rfm.parquet")
     logger.info("Done")
+
 
 def main():
     make_rfm_data()

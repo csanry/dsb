@@ -31,8 +31,8 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         ).dt.days
         df["days_late"] = (
             (
-                df["order_estimated_delivery_date"]
-                - df["order_delivered_customer_date"]
+                df["order_delivered_customer_date"]
+                - df["order_estimated_delivery_date"]
             ).dt.days
         ).apply(lambda x: max(x, 0))
         df["product_size"] = (
