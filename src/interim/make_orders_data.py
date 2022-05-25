@@ -4,12 +4,9 @@ import os
 import pandas as pd
 
 from src import config, make_transactions_data
-from src.helpers import setup_credentials
 
 
 def make_orders_data():
-
-    setup_credentials()
 
     log_fmt = "%(asctime)s:%(name)s:%(levelname)s - %(message)s"
     logging.basicConfig(level=logging.INFO, format=log_fmt)
@@ -23,7 +20,9 @@ def make_orders_data():
     df = pd.read_parquet(config.INT_FILE_PATH / "transactions.parquet")
 
     logger.info("Processing")
-    orders_agg = df.groupby("order_id").agg(
+    orders_agg = df.groupby(
+        ["order_id", "customer_unique_id", "customer_city", "customer_state"]
+    ).agg(
         {
             "product_id": "nunique",
             "product_category_name": lambda x: set(x),
@@ -38,7 +37,7 @@ def make_orders_data():
             "order_item_id": "count",
             "late_delivery": "max",
         }
-    )
+    ).reset_index(drop=False)
 
     orders_agg.rename(
         columns={
