@@ -1,45 +1,22 @@
 import datetime as dt
 import logging
-<<<<<<< HEAD
 
 import pandas as pd
-=======
-import os
-
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import missingno as msno
-import numpy as np
-import pandas as pd
-import seaborn as sns
->>>>>>> 16e6147017fc343ffeae779d9cba5659e7cdddd8
 
 from src import config
 
 
 def make_rfm_data():
 
-<<<<<<< HEAD
     log_fmt = "%(asctime)s:%(name)s:%(levelname)s - %(message)s"
     logging.basicConfig(level=logging.INFO, format=log_fmt)
     logger = logging.getLogger()
 
-=======
-    log_fmt = '%(asctime)s:%(name)s:%(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
-    logger = logging.getLogger()
-
-
->>>>>>> 16e6147017fc343ffeae779d9cba5659e7cdddd8
     logger.info("Reading in files")
     customers = pd.read_csv(config.RAW_FILE_PATH / "olist_customers_dataset.csv")
     orders = pd.read_csv(config.RAW_FILE_PATH / "olist_orders_dataset.csv")
     order_items = pd.read_csv(config.RAW_FILE_PATH / "olist_order_items_dataset.csv")
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 16e6147017fc343ffeae779d9cba5659e7cdddd8
     logger.info("Processing")
     grouped_order_items = (
         order_items.groupby("order_id")
@@ -95,10 +72,7 @@ def make_rfm_data():
     rfm.to_parquet(config.INT_FILE_PATH / "rfm.parquet")
     logger.info("Done")
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 16e6147017fc343ffeae779d9cba5659e7cdddd8
 def main():
     make_rfm_data()
 
