@@ -19,7 +19,6 @@ endif
 ## Setup packages
 pkg: 
 	pip install -e .
-	pre-commit install
 
 ## Run pipe 
 pipe:
