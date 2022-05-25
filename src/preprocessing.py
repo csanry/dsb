@@ -8,7 +8,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from src import config
 
 
-class FeatureEngineering(BaseEstimator, TransformerMixin):
+class FeatureEngineeringTransactions(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
 
@@ -42,25 +42,16 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         return df
 
 
-def preprocessing():
+def preprocess_transactions(df):
 
-    log_fmt = "%(asctime)s:%(name)s:%(levelname)s - %(message)s"
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
-
-    logger = logging.getLogger()
-
-    logger.info("Engineering features")
-    df = pd.read_parquet(config.INT_FILE_PATH / "transactions_raw.parquet")
-    feature_engineering = FeatureEngineering()
-
+    feature_engineering = FeatureEngineeringTransactions()
     df = feature_engineering.transform(df)
 
-    df.to_parquet(config.INT_FILE_PATH / "transactions.parquet")
-    logger.info("Done")
+    return df
 
 
 def main():
-    preprocessing()
+    pass 
 
 
 if __name__ == "__main__":

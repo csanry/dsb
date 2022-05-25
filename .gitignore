@@ -132,5 +132,6 @@ dmypy.json
 .vscode
 
 # data
-data/
+*.csv
+*.parquet
 .DS_Store
