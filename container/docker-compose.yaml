@@ -3,8 +3,11 @@ services:
   jupyterlab:
     platform: "linux/amd64"
     image: csanry/dsb:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ./:/project/
+      - ../:/project
     ports:
       - "0.0.0.0:9000:9000"
     command: "/bin/bash -c 'source activate dsb && jupyter lab --no-browser --ip=0.0.0.0 --port=9000 --allow-root --notebook-dir=/project/ --NotebookApp.token=\"\"'"

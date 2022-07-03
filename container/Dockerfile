@@ -14,6 +14,6 @@ RUN apt update &&\
     rm -f Miniconda3-latest-Linux-x86_64.sh &&\
     mkdir project
 
-COPY . project/
+COPY environment.yaml project/
 
 RUN conda env create -f project/environment.yaml
