@@ -8,22 +8,32 @@ Table of Contents
 | --- | --- |
 | 1. | [About this Project](#1) | 
 | 2. | [Setup Environment](#2) | 
-| 3. | [Teardown Environment](#3) | 
-| 4. | [Download Data](#4) |
-| 5. | [Run the MBA Analysis](#5) |
-| 4. | [Project Organization](#4) | 
-| 5. | [Workflow](#5) | 
+| 3. | [Run project pipeline](#3) |
+| 4. | [Teardown Environment](#4) | 
+| 5. | [Project Organization](#5) |
 | 6. | [Development Workflow](#6) | 
 | 7. | [Pull Requests](#7) | 
+
 
 About this Project <a name="1"></a>
 ------------
 
-OList info and background here 
+Olist is an e-commerce company headquartered in Brazil. The organisation serves as an integrated platform for sellers to sell their goods at the online marketplace to a wider customer base. 
 
+The platform, known as the Olist store, includes several features, such as inventory management, order fulfilment, and automated customer services, to help buyers and sellers to transact online in a smooth and fuss-free manner.
 
-```text
-template writeup
+Given the wealth of data that Olist collects from its various platforms, we are interested to use the business as a case study on how to effectively leverage data using Data Science principles to maximise business productivity and customer relationships.
+
+The main pipeline of our project consists of several components
+
+### Project Pipeline
+```mermaid
+graph LR;    
+   make_dataset --> make_transactions_data --> make_orders_data --> geospatial_EDA --> tableau
+   make_transactions_data --> make_categorical_data --> categorical_analysis --> tableau
+   make_transactions_data --> make_customer_data --> make_rfm_data
+   make_customer_data --> customer_segmentation
+   make_customer_data --> recommendation_system
 ```
 
 
@@ -37,7 +47,6 @@ Setup Environment <a name="2"></a>
 * Download [docker](https://www.docker.com/products/docker-desktop/) 
 
 * Download [git](https://git-scm.com/downloads) 
-
 
 In your terminal of choice, run the following terminal commands 
 
@@ -55,12 +64,9 @@ docker-compose up
 
 The command launches an Ubuntu-based distro, and a Jupyter Lab environment for running the pipelines. Launch the Lab environment from the terminal by clicking on the generated URL
 
-In the environment, run the following commands in an open terminal 
 
-```bash
-cd project
-bash run_pipeline.sh
-```
+Run project pipeline <a name="3"></a>
+------------
 
 Check that the environment is properly set up using the following command
 
@@ -68,7 +74,30 @@ Check that the environment is properly set up using the following command
 make test_environment
 ```
 
-Project Organization <a name="3"></a>
+In the environment, run the following commands in an open terminal. The shell script runs a pipeline that: 
+- Downloads the data from Kaggle 
+- Runs several preprocessing components to clean and transform the raw data into a suitable form for: 
+    - Customer-level analysis
+    - Temporal analysis 
+    - Factor-level analysis (based on product categories)
+
+```bash
+cd project
+bash run_pipeline.sh
+```
+
+
+Teardown the environment <a name="4"></a>
+------------
+
+Close the jupyter lab instance and run the follow commands in your terminal of choice
+
+```bash
+docker-compose down
+```
+
+
+Project Organization <a name="5"></a>
 ------------
 
 The repository is structured with the following hierarchy
@@ -133,3 +162,41 @@ The repository is structured with the following hierarchy
     ├── make_transactions_data.py
     └── preprocessing.py
 ```
+
+Development workflow <a name="6"></a>
+------------
+
+We utilised the [github flow](https://githubflow.github.io/) philosophy where:
+
+- Features should be developed on branches
+
+- Whenever you think that the branch is ready for merging, open a pull request
+
+- Why? Ensures that main branch is as clean and deployable as possible, no conflicts due to competing branches
+
+- For more information, refer to this [article](https://githubflow.github.io/)
+
+Pull requests <a name="7"></a>
+------------
+
+```bash
+# checkout a branch
+git checkout -b cs --track origin/main
+
+# add and commit changes to the branch
+git add .
+git commit -m "message" -m "more detail on changes made" 
+
+# push changes
+git push origin cs
+```
+
+* Head to the main [repo](https://github.com/csanry/aml), find your branch, and click on "new pull request" 
+
+* Enter a __descriptive__ title and description for your pull request
+
+* Click on reviewers on the right side and request a review from `csanry`
+
+* Select `create pull request` 
+
+
