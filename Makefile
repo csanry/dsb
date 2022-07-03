@@ -19,21 +19,22 @@ endif
 ## Setup packages
 pkg: 
 	pip install -e .
-    
+
+## Launch the project 
+project-up: 
+	docker compose -f container/docker-compose.yaml up
+
+## Teardown the project
+project-down: 
+	docker compose -f container/docker-compose.yaml down --rmi all
+	 
 ## Run pipe 
 pipe:
-	pip install -e .
-	python3 $(PROJECT_DIR)/src/ingest/make_dataset.py
-	python3 $(PROJECT_DIR)/src/interim/make_transactions_data.py
-	python3 $(PROJECT_DIR)/src/interim/make_orders_data.py
-	python3 $(PROJECT_DIR)/src/interim/make_customers_data.py
-	python3 $(PROJECT_DIR)/src/interim/make_category_data.py
-	python3 $(PROJECT_DIR)/src/interim/make_rfm_data.py
-	
+	bash run_pipeline.sh
 
-# Push updates to docker container
+## Push updates to docker container
 docker_push: 
-	docker build -t csanry/dsb:latest .
+	docker build -t csanry/dsb:latest container/.
 	docker login 
 	docker push csanry/dsb:latest
 
@@ -43,3 +44,4 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 	find . -type d -name ".ipynb_checkpoints" -delete
+
