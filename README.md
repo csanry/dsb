@@ -40,7 +40,7 @@ graph LR;
 Setup Environment <a name="2"></a>
 ------------
 
-### Prerequisties 
+### Prerequisites 
 
 * Download and install [anaconda](https://www.anaconda.com/products/distribution) 
 
@@ -58,8 +58,9 @@ cd dsb
 Ensure that you are logged into docker hub. Then run the following command to set up the docker environment 
 
 ```bash
+cd project
 docker login
-docker-compose up
+make project-up
 ```
 
 The command launches an Ubuntu-based distro, and a Jupyter Lab environment for running the pipelines. Launch the Lab environment from the terminal by clicking on the generated URL
@@ -68,23 +69,24 @@ The command launches an Ubuntu-based distro, and a Jupyter Lab environment for r
 Run project pipeline <a name="3"></a>
 ------------
 
-Check that the environment is properly set up using the following command
+Run a pre-clean of the environment using 
 
 ```bash
-make test_environment
+make clean
 ```
 
-In the environment, run the following commands in an open terminal. The shell script runs a pipeline that: 
+In the environment, run the following command in an open terminal. 
+
+```bash
+make pipe
+```
+
+The command runs a pipeline that: 
 - Downloads the data from Kaggle 
 - Runs several preprocessing components to clean and transform the raw data into a suitable form for: 
     - Customer-level analysis
     - Temporal analysis 
     - Factor-level analysis (based on product categories)
-
-```bash
-cd project
-bash run_pipeline.sh
-```
 
 
 Teardown the environment <a name="4"></a>
@@ -93,7 +95,7 @@ Teardown the environment <a name="4"></a>
 Close the jupyter lab instance and run the follow commands in your terminal of choice
 
 ```bash
-docker-compose down
+make project-down
 ```
 
 
@@ -191,11 +193,11 @@ git commit -m "message" -m "more detail on changes made"
 git push origin cs
 ```
 
-* Head to the main [repo](https://github.com/csanry/aml), find your branch, and click on "new pull request" 
+* Head to the main [repo](https://github.com/csanry/dsb), find your branch, and click on "new pull request" 
 
 * Enter a __descriptive__ title and description for your pull request
 
-* Click on reviewers on the right side and request a review from `csanry`
+* Click on reviewers on the right side and request a review 
 
 * Select `create pull request` 
 
