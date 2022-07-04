@@ -58,7 +58,6 @@ cd dsb
 Ensure that you are logged into docker hub. Then run the following command to set up the docker environment 
 
 ```bash
-cd project
 docker login
 make project-up
 ```
@@ -68,6 +67,12 @@ The command launches an Ubuntu-based distro, and a Jupyter Lab environment for r
 
 Run project pipeline <a name="3"></a>
 ------------
+
+The root path of the source code is `project`
+
+```bash
+cd project
+```
 
 Run a pre-clean of the environment using 
 
