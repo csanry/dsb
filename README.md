@@ -55,6 +55,12 @@ git clone https://github.com/csanry/dsb.git
 cd dsb
 ```
 
+Run a pre-clean of the environment using 
+
+```bash
+make clean
+```
+
 Ensure that you are logged into docker hub. Then run the following command to set up the docker environment 
 
 ```bash
@@ -72,12 +78,6 @@ The root path of the source code is `project`
 
 ```bash
 cd project
-```
-
-Run a pre-clean of the environment using 
-
-```bash
-make clean
 ```
 
 In the environment, run the following command in an open terminal. 
