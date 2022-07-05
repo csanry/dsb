@@ -136,6 +136,7 @@ The repository is structured with the following hierarchy
 ├── environment.yaml
 ├── image
 ├── notebooks
+│   ├── clustering.ipynb
 │   ├── delivery.ipynb
 │   ├── eda_customers.ipynb
 │   ├── eda_products.ipynb
